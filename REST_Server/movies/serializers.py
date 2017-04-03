@@ -1,12 +1,17 @@
 from rest_framework import serializers
-from .models import Movie,Person
+from .models import Movie,Person,Role
 
-class MovieSerializer(serializers.HyperlinkedModelSerializer):
+class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ("title", "description", "director", "actors", "year")
+        fields = '__all__'
         
-class PersonSerializer(serializers.HyperlinkedModelSerializer):
+class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ("first_name", "last_name")
+        fields = '__all__'
+        
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'

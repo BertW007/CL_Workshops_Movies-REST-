@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from movies.views import MoviesView
+from movies.views import MovieView,MoviesView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^movies/$', MoviesView.as_view())
+    url(r'^movies/$', MoviesView.as_view(), name='movie-all'),
+    url(r'^movie/(?P<id>(\d)+)$', MovieView.as_view(), name='movie-details')
 ]
