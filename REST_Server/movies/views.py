@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from .models import Movie,Person
 from .serializers import MovieSerializer,PersonSerializer
 
@@ -34,5 +35,10 @@ class MovieView(APIView):
         movie = self.get_object(id)
         serializer = MovieSerializer(movie, context={"request": request})
         return Response(serializer.data)
+    
+    def delete(self, request, id, format=None):
+        movie = self.get_object(id)
+        movie.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
     
